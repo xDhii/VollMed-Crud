@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Specialist: Identifiable, Codable {
+struct Specialist: Identifiable, Codable, Equatable {
     let id: String
     let name: String
     let crm: String
