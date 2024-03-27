@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-
     let service = WebService()
-    @State private var specialists : [Specialist] = []
+    @State private var specialists: [Specialist] = []
 
     func getSpecialists() async {
         do {

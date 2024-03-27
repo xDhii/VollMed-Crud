@@ -33,7 +33,7 @@ struct ScheduleAppointmentView: View {
         }
 
         do {
-            if (try await service.rescheduleAppointment(appointmentID: appointmentID, date: selectedDate.convertToString())) != nil {
+            if try (await service.rescheduleAppointment(appointmentID: appointmentID, date: selectedDate.convertToString())) != nil {
                 isAppointmentScheduled = true
             } else {
                 isAppointmentScheduled = false
