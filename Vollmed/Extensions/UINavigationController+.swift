@@ -5,4 +5,11 @@
 //  Created by Adriano Valumin on 29/03/24.
 //
 
-import Foundation
+import SwiftUI
+
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
+    }
+}
