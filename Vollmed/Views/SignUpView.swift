@@ -42,61 +42,30 @@ struct SignUpView: View {
                     .foregroundStyle(.gray)
                     .padding(.bottom)
 
-                Text("Nome")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.accent)
+                TextFieldView(title: "Nome",
+                              placeholder: "Insira seu nome completo",
+                              value: $userName,
+                              fieldType: .name)
 
-                TextField("Insira seu nome completo", text: $userName)
-                    .padding(14)
-                    .background(.gray.opacity(0.25))
-                    .clipShape(.buttonBorder)
-                    .autocorrectionDisabled()
+                TextFieldView(title: "Email",
+                              placeholder: "Insira seu email",
+                              value: $userEmail,
+                              fieldType: .email)
 
-                Text("Email")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.accent)
+                TextFieldView(title: "CPF",
+                              placeholder: "Insira seu CPF",
+                              value: $userDocument,
+                              fieldType: .document)
 
-                TextField("Insira seu email", text: $userEmail)
-                    .padding(14)
-                    .background(.gray.opacity(0.25))
-                    .clipShape(.buttonBorder)
-                    .autocorrectionDisabled()
-                    .keyboardType(.emailAddress)
-                    .textInputAutocapitalization(.never)
+                TextFieldView(title: "Telefone",
+                              placeholder: "Insira seu telefone",
+                              value: $userPhoneNumber,
+                              fieldType: .phone)
 
-                Text("CPF")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.accent)
-
-                TextField("Insira seu CPF", text: $userDocument)
-                    .padding(14)
-                    .background(.gray.opacity(0.25))
-                    .clipShape(.buttonBorder)
-                    .keyboardType(.numberPad)
-
-                Text("Telefone")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.accent)
-
-                TextField("Insira seu telefone", text: $userPhoneNumber)
-                    .padding(14)
-                    .background(.gray.opacity(0.25))
-                    .clipShape(.buttonBorder)
-                    .keyboardType(.numberPad)
-
-                Text("Senha")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.accent)
-
-                SecureField("Senha", text: $userPassword)
-                    .padding(14)
-                    .background(.gray.opacity(0.25))
-                    .clipShape(.buttonBorder)
+                TextFieldView(title: "Senha",
+                              placeholder: "Insira sua senha",
+                              value: $userPassword,
+                              fieldType: .password)
 
                 Text("Selecione o seu plano de saúde")
                     .font(.title3)
@@ -109,12 +78,12 @@ struct SignUpView: View {
                     }
                 }
                 .padding()
-                .frame(maxWidth: .infinity, maxHeight: 36 ,alignment: .leading)
+                .frame(maxWidth: .infinity, maxHeight: 36, alignment: .leading)
                 .background(.gray.opacity(0.25))
                 .clipShape(.buttonBorder)
 
                 Button(action: {
-                    print(userName)
+                    // TBD
                 }, label: {
                     ButtonView(text: "Cadastrar")
                 })

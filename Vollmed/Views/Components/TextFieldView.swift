@@ -8,8 +8,9 @@
 import SwiftUI
 
 enum TextFieldType {
-    case text
+    case name
     case email
+    case document
     case phone
     case password
 }
@@ -21,23 +22,18 @@ struct TextFieldView: View {
     var fieldType: TextFieldType
     var keyboardType: UIKeyboardType {
         switch fieldType {
-            case .text:
+            case .name:
                 .default
             case .email:
                 .emailAddress
+            case .document:
+                .numberPad
             case .phone:
                 .numberPad
             case .password:
                 .default
         }
     }
-
-//    init(title: String, placeholder: String, fieldType: TextFieldType) {
-//        self.title = title
-//        self.placeholder = placeholder
-////        self.value = value
-//        self.fieldType = fieldType
-//    }
 
     var body: some View {
         Text(title)
@@ -56,10 +52,12 @@ struct TextFieldView: View {
                 .background(.gray.opacity(0.25))
                 .clipShape(.buttonBorder)
                 .keyboardType(keyboardType)
+                .autocorrectionDisabled(fieldType == .name ? true : false)
+                .textInputAutocapitalization(fieldType == .email ? .never : .words)
         }
     }
 }
 
 #Preview {
-    TextFieldView(title: "Nome", placeholder: "Insira seu nome completo", value: .constant(""), fieldType: .text)
+    TextFieldView(title: "Nome", placeholder: "Insira seu nome completo", value: .constant(""), fieldType: .name)
 }
