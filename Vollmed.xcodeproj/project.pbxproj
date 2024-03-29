@@ -24,6 +24,8 @@
 		BC173F112BB0958200982132 /* CancelAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F102BB0958200982132 /* CancelAppointmentView.swift */; };
 		BCA07D872BAA41C4002305E6 /* ScheduleAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA07D862BAA41C4002305E6 /* ScheduleAppointmentView.swift */; };
 		BCD7ADA92BB71075003B3032 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADA82BB71075003B3032 /* SignInView.swift */; };
+		BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAA2BB71561003B3032 /* SignUpView.swift */; };
+		BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		BC83E5DF2BB5EFD6009B9020 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BCA07D862BAA41C4002305E6 /* ScheduleAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAppointmentView.swift; sourceTree = "<group>"; };
 		BCD7ADA82BB71075003B3032 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		BCD7ADAA2BB71561003B3032 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 				BC173F0C2BAFA5CC00982132 /* MyAppointmentsView.swift */,
 				BC173F102BB0958200982132 /* CancelAppointmentView.swift */,
 				BCD7ADA82BB71075003B3032 /* SignInView.swift */,
+				BCD7ADAA2BB71561003B3032 /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			children = (
 				BC173F062BACE80800982132 /* Date+.swift */,
 				BC173F082BACE96E00982132 /* String+.swift */,
+				BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */,
 				BC173F0F2BB08A3000982132 /* Appointment.swift in Sources */,
 				BC173F072BACE80800982132 /* Date+.swift in Sources */,
 				BC173F0B2BAD038E00982132 /* ScheduleAppointment.swift in Sources */,
@@ -230,6 +237,7 @@
 				BCD7ADA92BB71075003B3032 /* SignInView.swift in Sources */,
 				484BEF032AB0F7080033C07A /* SpecialistCardView.swift in Sources */,
 				484BEEFF2AB0F59D0033C07A /* WebService.swift in Sources */,
+				BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */,
 				48539DED2AB0F47C005BD7C9 /* VollmedApp.swift in Sources */,
 				BC173F0D2BAFA5CC00982132 /* MyAppointmentsView.swift in Sources */,
 				BCA07D872BAA41C4002305E6 /* ScheduleAppointmentView.swift in Sources */,
