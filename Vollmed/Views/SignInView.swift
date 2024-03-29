@@ -48,6 +48,22 @@ struct SignInView: View {
                 .keyboardType(.default)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+
+            Button(action: {
+                // TBD
+            }, label: {
+                ButtonView(text: "Entrar")
+            })
+
+            NavigationLink {
+                SignUpView()
+            } label: {
+                Text("Ainda não possui uma conta? Cadastre-se")
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+
+
         }
         .padding()
     }
