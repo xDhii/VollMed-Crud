@@ -11,14 +11,18 @@ struct SignInView: View {
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
     @State private var showAlert: Bool = false
+    @State private var isLoading: Bool = false
 
     let service = WebService()
 
     func login() async {
         do {
+            withAnimation {
+                isLoading = true
+            }
             if let response = try await service.loginPatient(email: userEmail, password: userPassword) {
-                UserDefaultsHelper.save(value: response.token, key: "token")
-                UserDefaultsHelper.save(value: response.id, key: "patient-id")
+                    UserDefaultsHelper.save(value: response.token, key: "token")
+                    UserDefaultsHelper.save(value: response.id, key: "patient-id")
             } else {
                 showAlert = true
             }
@@ -26,62 +30,69 @@ struct SignInView: View {
             print("Ocorreu um erro ao realizar login: \(error)")
             showAlert = true
         }
+        withAnimation {
+            isLoading = false
+        }
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Image(.logo)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: 36.0, alignment: .center)
+        if isLoading {
+            LoadingView()
+        } else {
+            VStack(alignment: .leading, spacing: 16) {
+                Image(.logo)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity, maxHeight: 36.0, alignment: .center)
 
-            Text("Olá!")
-                .font(.title2)
-                .bold()
-                .foregroundStyle(.accent)
-
-            Text("Preencha para acessar sua conta.")
-                .font(.title3)
-                .foregroundStyle(.gray)
-                .padding(.bottom)
-
-            TextFieldView(title: "Email",
-                          placeholder: "Insira seu email",
-                          value: $userEmail,
-                          fieldType: .email)
-
-            TextFieldView(title: "Senha",
-                          placeholder: "Insira sua senha",
-                          value: $userPassword,
-                          fieldType: .password)
-
-            Button(action: {
-                Task {
-                    await login()
-                }
-            }, label: {
-                ButtonView(text: "Entrar")
-            })
-
-            NavigationLink {
-                SignUpView()
-            } label: {
-                Text("Ainda não possui uma conta? Cadastre-se")
+                Text("Olá!")
+                    .font(.title2)
                     .bold()
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .foregroundStyle(.accent)
+
+                Text("Preencha para acessar sua conta.")
+                    .font(.title3)
+                    .foregroundStyle(.gray)
+                    .padding(.bottom)
+
+                TextFieldView(title: "Email",
+                              placeholder: "Insira seu email",
+                              value: $userEmail,
+                              fieldType: .email)
+
+                TextFieldView(title: "Senha",
+                              placeholder: "Insira sua senha",
+                              value: $userPassword,
+                              fieldType: .password)
+
+                Button(action: {
+                    Task {
+                        await login()
+                    }
+                }, label: {
+                    ButtonView(text: "Entrar")
+                })
+
+                NavigationLink {
+                    SignUpView()
+                } label: {
+                    Text("Ainda não possui uma conta? Cadastre-se")
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
             }
-        }
-        .padding()
-        .alert("Oops, algo deu errado!",
-               isPresented: $showAlert) {
-            Button(action: {
-                       // TBD
-                   },
-                   label: {
-                       Text("Ok")
-                   })
-        } message: {
-            Text("Houve um erro ao realizar login. Tente novamente.")
+            .padding()
+            .alert("Oops, algo deu errado!",
+                   isPresented: $showAlert) {
+                Button(action: {
+                        // TBD
+                },
+                       label: {
+                    Text("Ok")
+                })
+            } message: {
+                Text("Houve um erro ao realizar login. Tente novamente.")
+            }
         }
     }
 }

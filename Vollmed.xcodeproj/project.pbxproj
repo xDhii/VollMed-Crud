@@ -23,6 +23,7 @@
 		BC173F0F2BB08A3000982132 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F0E2BB08A3000982132 /* Appointment.swift */; };
 		BC173F112BB0958200982132 /* CancelAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F102BB0958200982132 /* CancelAppointmentView.swift */; };
 		BCA07D872BAA41C4002305E6 /* ScheduleAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA07D862BAA41C4002305E6 /* ScheduleAppointmentView.swift */; };
+		BCCF63A62BB9FA690063BD7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCF63A52BB9FA690063BD7C /* LoadingView.swift */; };
 		BCD7ADA92BB71075003B3032 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADA82BB71075003B3032 /* SignInView.swift */; };
 		BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAA2BB71561003B3032 /* SignUpView.swift */; };
 		BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */; };
@@ -51,6 +52,7 @@
 		BC173F102BB0958200982132 /* CancelAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAppointmentView.swift; sourceTree = "<group>"; };
 		BC83E5DF2BB5EFD6009B9020 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BCA07D862BAA41C4002305E6 /* ScheduleAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAppointmentView.swift; sourceTree = "<group>"; };
+		BCCF63A52BB9FA690063BD7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BCD7ADA82BB71075003B3032 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		BCD7ADAA2BB71561003B3032 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				484BEF002AB0F6090033C07A /* ButtonView.swift */,
 				484BEF022AB0F7080033C07A /* SpecialistCardView.swift */,
 				BCD7ADAE2BB74DDF003B3032 /* TextFieldView.swift */,
+				BCCF63A52BB9FA690063BD7C /* LoadingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				BCD7ADB52BB9D4D9003B3032 /* UserDefaultsHelper.swift in Sources */,
 				BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */,
 				BC173F0F2BB08A3000982132 /* Appointment.swift in Sources */,
+				BCCF63A62BB9FA690063BD7C /* LoadingView.swift in Sources */,
 				BC173F072BACE80800982132 /* Date+.swift in Sources */,
 				BC173F0B2BAD038E00982132 /* ScheduleAppointment.swift in Sources */,
 				48539DEF2AB0F47C005BD7C9 /* ContentView.swift in Sources */,
