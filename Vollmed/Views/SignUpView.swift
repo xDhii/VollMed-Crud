@@ -10,17 +10,43 @@ import SwiftUI
 struct SignUpView: View {
     @Environment(\.dismiss) private var dismiss
 
+    let service = WebService()
+
     @State private var userName: String = ""
     @State private var userEmail: String = ""
     @State private var userDocument: String = ""
     @State private var userPhoneNumber: String = ""
     @State private var healthPlan: String
     @State private var userPassword: String = ""
+    @State private var showAlert: Bool = false
+    @State private var isPatientRegistered: Bool = false
 
     let healthPlansList: [String] = ["Unimed", "SulAmérica", "Bradesco", "Amil", "Golden Cross", "Medial", "Outro"]
 
     init() {
         self.healthPlan = healthPlansList[0]
+    }
+
+    func register() async {
+        let patient = Patient(id: nil,
+                              document: userDocument,
+                              name: userName,
+                              email: userEmail,
+                              password: userPassword,
+                              phoneNumber: userPhoneNumber,
+                              healthPlan: healthPlan)
+        do {
+            if let patientRegistered = try await service.registerPatient(patient: patient) {
+                print("Paciente cadastrado com sucesso.")
+                isPatientRegistered = true
+            } else {
+                isPatientRegistered = false
+            }
+        } catch {
+            print("Ocorreu um erro ao cadastrar paciente: \(error)")
+            isPatientRegistered = false
+        }
+        showAlert = true
     }
 
     var body: some View {
@@ -83,7 +109,9 @@ struct SignUpView: View {
                 .clipShape(.buttonBorder)
 
                 Button(action: {
-                    // TBD
+                    Task {
+                        await register()
+                    }
                 }, label: {
                     ButtonView(text: "Cadastrar")
                 })
@@ -101,6 +129,23 @@ struct SignUpView: View {
         .scrollIndicators(.hidden)
         .navigationBarBackButtonHidden()
         .padding()
+        .alert(isPatientRegistered ? "Sucesso" : "Oops, algo deu errado!",
+               isPresented: $showAlert,
+               presenting: $isPatientRegistered) { _ in
+            Button(action: {
+                if isPatientRegistered {
+                    dismiss()
+                }
+            }, label: {
+                Text("Ok")
+            })
+        } message: { _ in
+            if isPatientRegistered {
+                Text("O cadastro foi realizado com sucesso!")
+            } else {
+                Text("Houve um erro ao se cadastrar. Tente novamente.")
+            }
+        }
     }
 }
 
