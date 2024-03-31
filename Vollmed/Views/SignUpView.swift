@@ -36,7 +36,7 @@ struct SignUpView: View {
                               phoneNumber: userPhoneNumber,
                               healthPlan: healthPlan)
         do {
-            if let patientRegistered = try await service.registerPatient(patient: patient) {
+            if (try await service.registerPatient(patient: patient)) != nil {
                 print("Paciente cadastrado com sucesso.")
                 isPatientRegistered = true
             } else {
@@ -117,7 +117,7 @@ struct SignUpView: View {
                 })
 
                 Divider()
-                
+
                 Button(action: {
                     dismiss()
                 }, label: {
