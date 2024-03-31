@@ -27,6 +27,7 @@
 		BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAA2BB71561003B3032 /* SignUpView.swift */; };
 		BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */; };
 		BCD7ADAF2BB74DDF003B3032 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAE2BB74DDF003B3032 /* TextFieldView.swift */; };
+		BCD7ADB12BB8A8EE003B3032 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADB02BB8A8EE003B3032 /* Patient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		BCD7ADAA2BB71561003B3032 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		BCD7ADAE2BB74DDF003B3032 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		BCD7ADB02BB8A8EE003B3032 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				484BEEFC2AB0F5750033C07A /* Specialist.swift */,
 				BC173F0A2BAD038E00982132 /* ScheduleAppointment.swift */,
 				BC173F0E2BB08A3000982132 /* Appointment.swift */,
+				BCD7ADB02BB8A8EE003B3032 /* Patient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				BCD7ADA92BB71075003B3032 /* SignInView.swift in Sources */,
 				484BEF032AB0F7080033C07A /* SpecialistCardView.swift in Sources */,
 				484BEEFF2AB0F59D0033C07A /* WebService.swift in Sources */,
+				BCD7ADB12BB8A8EE003B3032 /* Patient.swift in Sources */,
 				BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */,
 				48539DED2AB0F47C005BD7C9 /* VollmedApp.swift in Sources */,
 				BC173F0D2BAFA5CC00982132 /* MyAppointmentsView.swift in Sources */,
