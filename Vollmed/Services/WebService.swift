@@ -7,8 +7,6 @@
 
 import UIKit
 
-let patientID = "cab08f57-8cdd-4a07-969a-c649eb2de2cb"
-
 struct WebService {
     let imageCache = NSCache<NSString, UIImage>()
     private let baseURL = "http://localhost:3000"
@@ -62,12 +60,18 @@ struct WebService {
             return false
         }
 
+        guard let token = UserDefaultsHelper.get(for: "token") else {
+            print("Token não encontrado")
+            return false
+        }
+
         let requestData: [String: String] = ["motivo_cancelamento": reasonToCancel]
         let jsonData = try JSONSerialization.data(withJSONObject: requestData)
 
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
 
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -85,12 +89,18 @@ struct WebService {
             return nil
         }
 
+        guard let token = UserDefaultsHelper.get(for: "token") else {
+            print("Token não encontrado!")
+            return nil
+        }
+
         let requestData: [String: String] = ["data": date]
         let jsonData = try JSONSerialization.data(withJSONObject: requestData)
 
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
 
         let (data, _) = try await URLSession.shared.data(for: request)
@@ -107,15 +117,31 @@ struct WebService {
             return nil
         }
 
-        let (data, _) = try await URLSession.shared.data(from: url)
+        guard let token = UserDefaultsHelper.get(for: "token") else {
+            print("Token não encontrado!")
+            return nil
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        let (data, _) = try await URLSession.shared.data(for: request)
         let appointments = try JSONDecoder().decode([Appointment].self, from: data)
         return appointments
     }
 
     func scheduleAppointment(specialistID: String, patientID: String, date: String) async throws -> ScheduleAppointmentResponse? {
         let endpoint = baseURL + "/consulta"
+
         guard let url = URL(string: endpoint) else {
             print("Erro na URL!")
+            return nil
+        }
+
+        guard let token = UserDefaultsHelper.get(for: "token") else {
+            print("Token não encontrado!")
             return nil
         }
 
@@ -125,6 +151,7 @@ struct WebService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
 
         let (data, _) = try await URLSession.shared.data(for: request)
