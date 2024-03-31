@@ -116,6 +116,8 @@ struct SignUpView: View {
                     ButtonView(text: "Cadastrar")
                 })
 
+                Divider()
+                
                 Button(action: {
                     dismiss()
                 }, label: {

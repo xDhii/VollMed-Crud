@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     let service = WebService()
+    var authManager = AuthenticationManager.shared
     @State private var specialists: [Specialist] = []
 
     func getSpecialists() async {
@@ -25,8 +26,8 @@ struct HomeView: View {
         do {
             let logoutSuccess = try await service.logoutPatient()
             if logoutSuccess {
-                UserDefaultsHelper.remove(for: "token")
-                UserDefaultsHelper.remove(for: "patient-id")
+                authManager.removeToken()
+                authManager.removePatientID()
             }
 
         } catch {

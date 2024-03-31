@@ -24,6 +24,8 @@
 		BC173F112BB0958200982132 /* CancelAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F102BB0958200982132 /* CancelAppointmentView.swift */; };
 		BCA07D872BAA41C4002305E6 /* ScheduleAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA07D862BAA41C4002305E6 /* ScheduleAppointmentView.swift */; };
 		BCCF63A62BB9FA690063BD7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCF63A52BB9FA690063BD7C /* LoadingView.swift */; };
+		BCCF63A82BBA13110063BD7C /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCF63A72BBA13110063BD7C /* KeychainHelper.swift */; };
+		BCCF63AB2BBA16D00063BD7C /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCF63AA2BBA16D00063BD7C /* AuthenticationManager.swift */; };
 		BCD7ADA92BB71075003B3032 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADA82BB71075003B3032 /* SignInView.swift */; };
 		BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAA2BB71561003B3032 /* SignUpView.swift */; };
 		BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */; };
@@ -53,6 +55,8 @@
 		BC83E5DF2BB5EFD6009B9020 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BCA07D862BAA41C4002305E6 /* ScheduleAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAppointmentView.swift; sourceTree = "<group>"; };
 		BCCF63A52BB9FA690063BD7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BCCF63A72BBA13110063BD7C /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		BCCF63AA2BBA16D00063BD7C /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		BCD7ADA82BB71075003B3032 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		BCD7ADAA2BB71561003B3032 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 			children = (
 				484BEEFE2AB0F59D0033C07A /* WebService.swift */,
 				BCD7ADB42BB9D4D9003B3032 /* UserDefaultsHelper.swift */,
+				BCCF63A72BBA13110063BD7C /* KeychainHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 		48539DEB2AB0F47C005BD7C9 /* Vollmed */ = {
 			isa = PBXGroup;
 			children = (
+				BCCF63A92BBA16B70063BD7C /* Managers */,
 				BC173F052BACE7EF00982132 /* Extensions */,
 				484BEEFB2AB0F56C0033C07A /* Services */,
 				484BEEFA2AB0F5680033C07A /* Models */,
@@ -167,6 +173,14 @@
 				BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BCCF63A92BBA16B70063BD7C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BCCF63AA2BBA16D00063BD7C /* AuthenticationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +262,7 @@
 				48539DEF2AB0F47C005BD7C9 /* ContentView.swift in Sources */,
 				BC173F092BACE96E00982132 /* String+.swift in Sources */,
 				484BEF052AB0F7970033C07A /* HomeView.swift in Sources */,
+				BCCF63AB2BBA16D00063BD7C /* AuthenticationManager.swift in Sources */,
 				BC173F112BB0958200982132 /* CancelAppointmentView.swift in Sources */,
 				BCD7ADAF2BB74DDF003B3032 /* TextFieldView.swift in Sources */,
 				484BEEFD2AB0F5750033C07A /* Specialist.swift in Sources */,
@@ -260,6 +275,7 @@
 				BCD7ADAB2BB71561003B3032 /* SignUpView.swift in Sources */,
 				48539DED2AB0F47C005BD7C9 /* VollmedApp.swift in Sources */,
 				BC173F0D2BAFA5CC00982132 /* MyAppointmentsView.swift in Sources */,
+				BCCF63A82BBA13110063BD7C /* KeychainHelper.swift in Sources */,
 				BCA07D872BAA41C4002305E6 /* ScheduleAppointmentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

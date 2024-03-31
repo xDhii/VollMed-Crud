@@ -10,6 +10,7 @@ import UIKit
 struct WebService {
     let imageCache = NSCache<NSString, UIImage>()
     private let baseURL = "http://localhost:3000"
+    var authManager = AuthenticationManager.shared
 
     func logoutPatient() async throws -> Bool {
         let endpoint = baseURL + "/auth/logout"
@@ -19,7 +20,7 @@ struct WebService {
             return false
         }
 
-        guard let token = UserDefaultsHelper.get(for: "token") else {
+        guard let token = authManager.token else {
             print("Token não encontrado!")
             return false
         }
@@ -85,7 +86,7 @@ struct WebService {
             return false
         }
 
-        guard let token = UserDefaultsHelper.get(for: "token") else {
+        guard let token = authManager.token else {
             print("Token não encontrado")
             return false
         }
@@ -114,7 +115,7 @@ struct WebService {
             return nil
         }
 
-        guard let token = UserDefaultsHelper.get(for: "token") else {
+        guard let token = authManager.token else {
             print("Token não encontrado!")
             return nil
         }
@@ -142,7 +143,7 @@ struct WebService {
             return nil
         }
 
-        guard let token = UserDefaultsHelper.get(for: "token") else {
+        guard let token = authManager.token else {
             print("Token não encontrado!")
             return nil
         }
@@ -165,7 +166,7 @@ struct WebService {
             return nil
         }
 
-        guard let token = UserDefaultsHelper.get(for: "token") else {
+        guard let token = authManager.token else {
             print("Token não encontrado!")
             return nil
         }

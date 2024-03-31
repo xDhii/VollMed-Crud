@@ -19,6 +19,7 @@ struct ScheduleAppointmentView: View {
     @State private var selectedDate = Date()
     @State private var showAlert = false
     @State private var isAppointmentScheduled = false
+    var authManager = AuthenticationManager.shared
 
     init(specialistID: String, isRescheduleView: Bool = false, appointmentID: String? = nil) {
         self.specialistID = specialistID
@@ -46,11 +47,11 @@ struct ScheduleAppointmentView: View {
     }
 
     func scheduleAppointment() async {
-        guard let patientID = UserDefaultsHelper.get(for: "patient-id") else {
+        guard let patientID = authManager.patientID else {
             print("ID do paciente não encontrado!")
             return
         }
-        
+
         do {
             if let appointment = try await service.scheduleAppointment(specialistID: specialistID, patientID: patientID, date: selectedDate.convertToString()) {
                 isAppointmentScheduled = true
@@ -100,7 +101,9 @@ struct ScheduleAppointmentView: View {
                isPresented: $showAlert,
                presenting: isAppointmentScheduled) { _ in
             Button(action: {
-                dismiss()
+                if isAppointmentScheduled {
+                    dismiss()
+                }
             }, label: {
                 Text("Ok")
             })

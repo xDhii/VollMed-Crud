@@ -13,6 +13,8 @@ struct SignInView: View {
     @State private var showAlert: Bool = false
     @State private var isLoading: Bool = false
 
+    var authManager = AuthenticationManager.shared
+
     let service = WebService()
 
     func login() async {
@@ -21,8 +23,8 @@ struct SignInView: View {
                 isLoading = true
             }
             if let response = try await service.loginPatient(email: userEmail, password: userPassword) {
-                    UserDefaultsHelper.save(value: response.token, key: "token")
-                    UserDefaultsHelper.save(value: response.id, key: "patient-id")
+                authManager.saveToken(token: response.token)
+                authManager.savePatientID(patientID: response.id)
             } else {
                 showAlert = true
             }
@@ -73,6 +75,8 @@ struct SignInView: View {
                     ButtonView(text: "Entrar")
                 })
 
+                Divider()
+
                 NavigationLink {
                     SignUpView()
                 } label: {
@@ -85,11 +89,11 @@ struct SignInView: View {
             .alert("Oops, algo deu errado!",
                    isPresented: $showAlert) {
                 Button(action: {
-                        // TBD
-                },
+                           // TBD
+                       },
                        label: {
-                    Text("Ok")
-                })
+                           Text("Ok")
+                       })
             } message: {
                 Text("Houve um erro ao realizar login. Tente novamente.")
             }
