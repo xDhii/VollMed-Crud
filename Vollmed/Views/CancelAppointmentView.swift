@@ -63,7 +63,9 @@ struct CancelAppointmentView: View {
                isPresented: $showAlert,
                presenting: isAppointmentCanceled) { _ in
             Button(action: {
-                dismiss()
+                if isAppointmentCanceled {
+                    dismiss()
+                }
             }, label: {
                 Text("Ok")
             })
