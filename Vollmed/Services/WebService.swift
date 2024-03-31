@@ -11,6 +11,31 @@ struct WebService {
     let imageCache = NSCache<NSString, UIImage>()
     private let baseURL = "http://localhost:3000"
 
+    func logoutPatient() async throws -> Bool {
+        let endpoint = baseURL + "/auth/logout"
+
+        guard let url = URL(string: endpoint) else {
+            print("Erro na URL!")
+            return false
+        }
+
+        guard let token = UserDefaultsHelper.get(for: "token") else {
+            print("Token não encontrado!")
+            return false
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+            return true
+        }
+        return false
+    }
+
     func loginPatient(email: String, password: String) async throws -> LoginResponse? {
         let endpoint = baseURL + "/auth/login"
 
