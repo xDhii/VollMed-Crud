@@ -10,6 +10,22 @@ import SwiftUI
 struct SignInView: View {
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
+    @State private var showAlert: Bool = false
+
+    let service = WebService()
+
+    func login() async {
+        do {
+            if let response = try await service.loginPatient(email: userEmail, password: userPassword) {
+                print(response)
+            } else {
+                showAlert = true
+            }
+        } catch {
+            print("Ocorreu um erro ao realizar login: \(error)")
+            showAlert = true
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -39,7 +55,9 @@ struct SignInView: View {
                           fieldType: .password)
 
             Button(action: {
-                // TBD
+                Task {
+                    await login()
+                }
             }, label: {
                 ButtonView(text: "Entrar")
             })
@@ -53,6 +71,17 @@ struct SignInView: View {
             }
         }
         .padding()
+        .alert("Oops, algo deu errado!",
+               isPresented: $showAlert) {
+            Button(action: {
+                       // TBD
+                   },
+                   label: {
+                       Text("Ok")
+                   })
+        } message: {
+            Text("Houve um erro ao realizar login. Tente novamente.")
+        }
     }
 }
 
