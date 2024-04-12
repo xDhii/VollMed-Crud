@@ -23,6 +23,10 @@ extension HTTPClient {
             return .failure(.invalidURL)
         }
 
+//        guard let url = URL(string: "https://private-c8e6e5-vollmedapierrors6.apiary-mock.com/specialists") else {
+//            return .failure(.invalidURL)
+//        }
+
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.header
@@ -48,6 +52,11 @@ extension HTTPClient {
                     }
 
                     return .success(decodedResponse)
+
+                case 400:
+                    let errorResponse = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+                    return .failure(.custom(errorResponse ?? ["error": "Unkown Error"]))
+
 
                 case 401:
                     return .failure(.unauthorized)

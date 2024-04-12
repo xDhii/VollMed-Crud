@@ -13,7 +13,7 @@ enum RequestError: Error {
     case noResponse
     case unauthorized
     case unknown
-    case custom(_ error: [String: Any])
+    case custom(_ error: [String: Any]?)
 
     var customMessage: String {
         switch self {
@@ -21,6 +21,12 @@ enum RequestError: Error {
                 return "Erro de decodificação"
             case .unauthorized:
                 return "Sessão expirada"
+            case .custom(let errorData):
+                if let jsonError = errorData?["error"] as? [String: Any] {
+                    let message = jsonError["message"] as? String ?? ""
+                    return message
+                }
+                return "Erro desconhecido"
             default:
                 return "Erro desconhecido"
         }

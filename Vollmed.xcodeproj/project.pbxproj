@@ -16,6 +16,9 @@
 		48539DEF2AB0F47C005BD7C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48539DEE2AB0F47C005BD7C9 /* ContentView.swift */; };
 		48539DF12AB0F47D005BD7C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48539DF02AB0F47D005BD7C9 /* Assets.xcassets */; };
 		48539DF42AB0F47D005BD7C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48539DF32AB0F47D005BD7C9 /* Preview Assets.xcassets */; };
+		BC0A2A572BC88CD200F8B387 /* SnackBarErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0A2A562BC88CD200F8B387 /* SnackBarErrorView.swift */; };
+		BC0A2A5C2BC8A12100F8B387 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0A2A5B2BC8A12100F8B387 /* SkeletonView.swift */; };
+		BC0A2A5E2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0A2A5D2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift */; };
 		BC173F072BACE80800982132 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F062BACE80800982132 /* Date+.swift */; };
 		BC173F092BACE96E00982132 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F082BACE96E00982132 /* String+.swift */; };
 		BC173F0B2BAD038E00982132 /* ScheduleAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC173F0A2BAD038E00982132 /* ScheduleAppointment.swift */; };
@@ -55,6 +58,9 @@
 		48539DEE2AB0F47C005BD7C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48539DF02AB0F47D005BD7C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48539DF32AB0F47D005BD7C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BC0A2A562BC88CD200F8B387 /* SnackBarErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarErrorView.swift; sourceTree = "<group>"; };
+		BC0A2A5B2BC8A12100F8B387 /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
+		BC0A2A5D2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedactedAnimationModifier.swift; sourceTree = "<group>"; };
 		BC173F062BACE80800982132 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		BC173F082BACE96E00982132 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		BC173F0A2BAD038E00982132 /* ScheduleAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAppointment.swift; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 		484BEEF82AB0F55F0033C07A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BC0A2A582BC8A0FD00F8B387 /* Skeleton */,
+				BC0A2A552BC88CBC00F8B387 /* SnackBarView */,
 				484BEEF92AB0F5630033C07A /* Components */,
 				BC173F102BB0958200982132 /* CancelAppointmentView.swift */,
 				484BEF042AB0F7970033C07A /* HomeView.swift */,
@@ -185,12 +193,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		BC0A2A552BC88CBC00F8B387 /* SnackBarView */ = {
+			isa = PBXGroup;
+			children = (
+				BC0A2A562BC88CD200F8B387 /* SnackBarErrorView.swift */,
+			);
+			path = SnackBarView;
+			sourceTree = "<group>";
+		};
+		BC0A2A582BC8A0FD00F8B387 /* Skeleton */ = {
+			isa = PBXGroup;
+			children = (
+				BC0A2A5B2BC8A12100F8B387 /* SkeletonView.swift */,
+			);
+			path = Skeleton;
+			sourceTree = "<group>";
+		};
 		BC173F052BACE7EF00982132 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				BC173F062BACE80800982132 /* Date+.swift */,
 				BC173F082BACE96E00982132 /* String+.swift */,
 				BCD7ADAC2BB71C25003B3032 /* UINavigationController+.swift */,
+				BC0A2A5D2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC6C20242BC216A700375803 /* RequestError.swift in Sources */,
+				BC0A2A5C2BC8A12100F8B387 /* SkeletonView.swift in Sources */,
 				BCD7ADB52BB9D4D9003B3032 /* UserDefaultsHelper.swift in Sources */,
 				BCD7ADAD2BB71C25003B3032 /* UINavigationController+.swift in Sources */,
 				BC173F0F2BB08A3000982132 /* Appointment.swift in Sources */,
@@ -340,6 +366,8 @@
 				484BEEFD2AB0F5750033C07A /* Specialist.swift in Sources */,
 				484BEF012AB0F6090033C07A /* ButtonView.swift in Sources */,
 				BCD7ADB32BB9CD39003B3032 /* Login.swift in Sources */,
+				BC0A2A5E2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift in Sources */,
+				BC0A2A572BC88CD200F8B387 /* SnackBarErrorView.swift in Sources */,
 				BC6C20222BC0C59C00375803 /* RequestMethod.swift in Sources */,
 				BC1E35482BBF69CC00B4D04F /* Endpoint.swift in Sources */,
 				BCD7ADA92BB71075003B3032 /* SignInView.swift in Sources */,

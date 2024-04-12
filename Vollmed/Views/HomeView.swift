@@ -8,63 +8,78 @@
 import SwiftUI
 
 struct HomeView: View {
-    let service = WebService()
-    var viewModel = HomeViewModel(service: HomeNetworkingService(),
-                                  authService: AuthenticationService())
+    let service: WebService = WebService()
+    var viewModel: HomeViewModel = HomeViewModel(service: HomeNetworkingService(),
+                                                 authService: AuthenticationService())
     @State private var specialists: [Specialist] = []
+    @State private var isShowingSnackBar: Bool = false
+    @State private var isFetchingData: Bool = true
+    @State private var errorMessage: String = ""
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack {
-                Image(.logo)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200)
-                    .padding(.vertical, 32)
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    Image(.logo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200)
+                        .padding(.vertical, 32)
 
-                Text("Boas-vindas!")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(Color(.lightBlue))
+                    Text("Boas-vindas!")
+                        .font(.title2)
+                        .bold()
+                        .foregroundStyle(Color(.lightBlue))
 
-                Text("Veja abaixo os especialistas da Vollmed disponíveis e marque já a sua consulta!")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.accent)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical, 16)
+                    Text("Veja abaixo os especialistas da Vollmed disponíveis e marque já a sua consulta!")
+                        .font(.title3)
+                        .bold()
+                        .foregroundStyle(.accent)
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical, 16)
 
-                ForEach(specialists) { specialist in
-                    SpecialistCardView(specialist: specialist)
-                        .padding(.bottom, 8)
+                    if isFetchingData {
+                        SkeletonView()
+                    } else {
+                        ForEach(specialists) { specialist in
+                            SpecialistCardView(specialist: specialist)
+                                .padding(.bottom, 8)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .onAppear {
+                Task {
+                    do {
+                        isFetchingData = false
+                        guard let response = try await viewModel.getSpecialists() else {
+                            return
+                        }
+                        self.specialists = response
+                    } catch {
+                        isShowingSnackBar = true
+                        let errorType = error as? RequestError
+                        errorMessage = errorType?.customMessage ?? "Erro desconhecido"
+                    }
                 }
             }
-            .padding(.horizontal)
-        }
-        .onAppear {
-            Task {
-                do {
-                    guard let response = try await viewModel.getSpecialists() else {
-                        return
-                    }
-                    self.specialists = response
-                } catch {
-                    print("Ocorreu um erro ao obter os especialistas: \(error.localizedDescription)")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        Task {
+                            await viewModel.logout()
+                        }
+                    }, label: {
+                        HStack(spacing: 2) {
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                            Text("Logout")
+                        }
+                    })
                 }
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {
-                    Task {
-                        await viewModel.logout()
-                    }
-                }, label: {
-                    HStack(spacing: 2) {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                        Text("Logout")
-                    }
-                })
+            if isShowingSnackBar {
+                SnackBarErrorView(isShowing: $isShowingSnackBar, message: errorMessage)
             }
         }
     }
