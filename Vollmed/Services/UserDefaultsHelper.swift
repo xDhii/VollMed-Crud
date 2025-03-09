@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserDefaultsHelper {
+enum UserDefaultsHelper {
     static func save(value: String, key: String) {
         UserDefaults.standard.set(value, forKey: key)
     }

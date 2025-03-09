@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import VollmedUI
 
 struct ScheduleAppointmentView: View {
+    // MARK: - Attributes
+
     @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var presentationMode
 
@@ -19,13 +22,29 @@ struct ScheduleAppointmentView: View {
     @State private var selectedDate = Date()
     @State private var showAlert = false
     @State private var isAppointmentScheduled = false
+    
     var authManager = AuthenticationManager.shared
+    private var alertOpacity: Double {
+        if showAlert {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                return 1
+            }
+        } else {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                return 0
+            }
+        }
+    }
+
+    // MARK: - Initializer
 
     init(specialistID: String, isRescheduleView: Bool = false, appointmentID: String? = nil) {
         self.specialistID = specialistID
         self.isRescheduleView = isRescheduleView
         self.appointmentID = appointmentID
     }
+
+    // MARK: - Reschedule Validation
 
     func rescheduleAppointment() async {
         guard let appointmentID else {
@@ -43,8 +62,18 @@ struct ScheduleAppointmentView: View {
             print("Ocorreu um erro ao remarcar consulta: \(error)")
             isAppointmentScheduled = false
         }
-        showAlert = true
+        withAnimation(.easeInOut(duration: 1)) {
+            showAlert = true
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            withAnimation(.easeInOut(duration: 1)) {
+                self.showAlert = false
+            }
+        }
     }
+
+    // MARK: - Schedule Validation
 
     func scheduleAppointment() async {
         guard let patientID = authManager.patientID else {
@@ -64,54 +93,60 @@ struct ScheduleAppointmentView: View {
             print("Ocorreu um erro ao agendar consulta: \(error)")
             isAppointmentScheduled = false
         }
-        showAlert = true
+
+        withAnimation(.easeInOut(duration: 1)) {
+            showAlert = true
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            withAnimation(.easeInOut(duration: 1)) {
+                self.showAlert = false
+            }
+        }
     }
 
+    // MARK: - Body View
+
     var body: some View {
-        VStack {
-            Text("Selecione a data e o horário da consulta")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.accent)
-                .multilineTextAlignment(.center)
-                .padding(.top)
+        ZStack {
+            VStack {
+                Text("Selecione a data e o horário da consulta")
+                    .font(.title3)
+                    .bold()
+                    .foregroundStyle(.accent)
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
 
-            DatePicker("Escolha a data da consulta", selection: $selectedDate, in: Date()...)
-                .datePickerStyle(.graphical)
+                DatePicker("Escolha a data da consulta", selection: $selectedDate, in: Date()...)
+                    .datePickerStyle(.graphical)
 
-            Button(action: {
-                Task {
-                    if isRescheduleView {
-                        await rescheduleAppointment()
-                    } else {
-                        await scheduleAppointment()
+                Button(action: {
+                    Task {
+                        if isRescheduleView {
+                            await rescheduleAppointment()
+                        } else {
+                            await scheduleAppointment()
+                        }
+                    }
+                }, label: {
+                    ButtonView(text: isRescheduleView ? "Reagendar consulta" : "Agendar consulta")
+                })
+            }
+            .padding()
+            .navigationTitle(isRescheduleView ? "Reagendar consulta" : "Agendar consulta")
+            .navigationBarTitleDisplayMode(.large)
+            .onAppear {
+                UIDatePicker.appearance().minuteInterval = 15
+            }
+            .overlay {
+                VStack {
+                    Spacer()
+                    if showAlert {
+                        VollmedSnackBar(title: "Sucesso", description: "A consulta foi \(isRescheduleView ? "reagendada" : "agendada") com sucesso!")
+                            .transition(.move(edge: .bottom))
+                            .opacity(alertOpacity)
                     }
                 }
-            }, label: {
-                ButtonView(text: isRescheduleView ? "Reagendar consulta" : "Agendar consulta")
-            })
-        }
-        .padding()
-        .navigationTitle(isRescheduleView ? "Reagendar consulta" : "Agendar consulta")
-        .navigationBarTitleDisplayMode(.large)
-        .onAppear {
-            UIDatePicker.appearance().minuteInterval = 15
-        }
-        .alert(isAppointmentScheduled ? "Sucesso!" : "Algo deu errado!",
-               isPresented: $showAlert,
-               presenting: isAppointmentScheduled) { _ in
-            Button(action: {
-                if isAppointmentScheduled {
-                    dismiss()
-                }
-            }, label: {
-                Text("Ok")
-            })
-        } message: { isScheduled in
-            if isScheduled {
-                Text("A consulta foi \(isRescheduleView ? "reagendada" : "agendada") com sucesso!")
-            } else {
-                Text("Houve um erro ao \(isRescheduleView ? "reagendar" : "agendar") sua consulta.")
             }
         }
     }

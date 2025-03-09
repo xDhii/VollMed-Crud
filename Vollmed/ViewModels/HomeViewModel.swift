@@ -27,10 +27,10 @@ struct HomeViewModel {
         let result = try await service.getAllSpecialists()
 
         switch result {
-            case let .success(response):
-                return response
-            case let .failure(error):
-                throw error
+        case let .success(response):
+            return response
+        case let .failure(error):
+            throw error
         }
     }
 
@@ -38,11 +38,11 @@ struct HomeViewModel {
         let result = await authService.logout()
 
         switch result {
-            case .success:
-                authManager.removeToken()
-                authManager.removePatientID()
-            case let .failure(error):
-                print("Ocorreu um erro ao fazer logout: \(error.localizedDescription)")
+        case .success:
+            authManager.removeToken()
+            authManager.removePatientID()
+        case let .failure(error):
+            print("Ocorreu um erro ao fazer logout: \(error.localizedDescription)")
         }
     }
 }

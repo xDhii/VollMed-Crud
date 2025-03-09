@@ -1,5 +1,5 @@
 //
-//  AuthenticationServiec.swift
+//  AuthenticationService.swift
 //  Vollmed
 //
 //  Created by Adriano Valumin on 07/04/24.
@@ -15,6 +15,4 @@ struct AuthenticationService: AuthenticationServiceable, HTTPClient {
     func logout() async -> Result<Bool?, RequestError> {
         return await sendRequest(endpoint: AuthenticationEndpoint.logout, responseModel: nil)
     }
-    
-
 }

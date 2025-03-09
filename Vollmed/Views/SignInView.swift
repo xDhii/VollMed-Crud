@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import VollmedUI
 
 struct SignInView: View {
     @State private var userEmail: String = ""
@@ -48,14 +49,10 @@ struct SignInView: View {
                     .frame(maxWidth: .infinity, maxHeight: 36.0, alignment: .center)
 
                 Text("Olá!")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(.accent)
-
+                    .titleStyleLBold()
+                
                 Text("Preencha para acessar sua conta.")
-                    .font(.title3)
-                    .foregroundStyle(.gray)
-                    .padding(.bottom)
+                    .titleStyleMdRegular()
 
                 TextFieldView(title: "Email",
                               placeholder: "Insira seu email",
@@ -72,8 +69,10 @@ struct SignInView: View {
                         await login()
                     }
                 }, label: {
-                    ButtonView(text: "Entrar")
+//                    ButtonView(text: "Entrar")
+                    Text("Entrar")
                 })
+                .buttonStyle(ConfirmPrimaryButtonStyle())
 
                 Divider()
 
@@ -87,7 +86,8 @@ struct SignInView: View {
             }
             .padding()
             .alert("Oops, algo deu errado!",
-                   isPresented: $showAlert) {
+                   isPresented: $showAlert)
+            {
                 Button(action: {
                            // TBD
                        },

@@ -1,0 +1,6 @@
+framework module VollmedUI {
+  umbrella header "VollmedUI-umbrella.h"
+
+  export *
+  module * { export * }
+}

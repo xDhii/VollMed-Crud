@@ -14,36 +14,36 @@ enum AuthenticationEndpoint {
 extension AuthenticationEndpoint: Endpoint {
     var path: String {
         switch self {
-            case .logout:
-                "/auth/logout"
+        case .logout:
+            "/auth/logout"
         }
     }
 
     var method: RequestMethod {
         switch self {
-            case .logout:
-                .post
+        case .logout:
+            .post
         }
     }
 
     var header: [String: String]? {
         switch self {
-            case .logout:
-                guard let token = AuthenticationManager.shared.token else {
-                    return nil
-                }
+        case .logout:
+            guard let token = AuthenticationManager.shared.token else {
+                return nil
+            }
 
-                return [
-                    "Authorization": "Bearer \(token)",
-                    "Content-Type": "application/json",
-                ]
+            return [
+                "Authorization": "Bearer \(token)",
+                "Content-Type": "application/json",
+            ]
         }
     }
 
     var body: [String: String]? {
         switch self {
-            case .logout:
-                nil
+        case .logout:
+            nil
         }
     }
 }

@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import VollmedUI
 
 struct SpecialistCardView: View {
+    // MARK: - Attributes
+
     var specialist: Specialist
     var appointment: Appointment?
     let service = WebService()
     @State private var specialistImage: UIImage?
+    @State private var showTooltip: Bool = false
+
+    // MARK: - Body
 
     func downloadImage() async {
         do {
@@ -41,9 +47,22 @@ struct SpecialistCardView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 8.0) {
-                    Text(specialist.name)
-                        .font(.title3)
-                        .bold()
+                    HStack {
+                        Text(specialist.name)
+                            .font(.title3)
+                            .bold()
+
+                        Button {
+                            showTooltip.toggle()
+                        } label: {
+                            Image(systemName: "info.circle")
+                        }
+                        .iOSPopover(
+                            isPresented: $showTooltip,
+                            arrowDirection: .any) {
+                                VollmedTooltipView(title: "Disponível", description: "Agende sua consulta.")
+                        }
+                    }
                     Text(specialist.specialty)
                     if let appointment {
                         Text(appointment.date.convertDateStringToReadableDate())
@@ -95,4 +114,71 @@ struct SpecialistCardView: View {
                    email: "carlos.alberto@example.com",
                    phoneNumber: "(11) 99999-9999")
     )
+}
+
+extension View {
+    func iOSPopover<Content: View>(isPresented: Binding<Bool>, arrowDirection: UIPopoverArrowDirection, content: @escaping () -> Content) -> some View {
+        self.background {
+            PopOverController(isPresented: isPresented, content: content(), arrowDirection: arrowDirection)
+        }
+    }
+}
+
+struct PopOverController<Content: View>: UIViewControllerRepresentable {
+    // MARK: - Attributes
+
+    @Binding var isPresented: Bool
+    var content: Content
+    var arrowDirection: UIPopoverArrowDirection
+
+    // MARK: - Body
+
+    func makeUIViewController(context _: Context) -> UIViewController {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .clear
+
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        if isPresented {
+            let controller = CustomHostingView(rootView: content)
+
+            controller.view.backgroundColor = .clear
+            controller.modalPresentationStyle = .popover
+            controller.popoverPresentationController?.permittedArrowDirections = arrowDirection
+            controller.presentationController?.delegate = context.coordinator
+            controller.popoverPresentationController?.sourceView = uiViewController.view
+
+            uiViewController.present(controller, animated: true)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+
+    class Coordinator: NSObject, UIPopoverPresentationControllerDelegate {
+        let parent: PopOverController
+
+        init(parent: PopOverController) {
+            self.parent = parent
+        }
+
+        func adaptivePresentationStyle(for _: UIPresentationController) -> UIModalPresentationStyle {
+            return .none
+        }
+
+        func presentationControllerWillDismiss(
+            _: UIPresentationController
+        ) {
+            parent.isPresented = false
+        }
+    }
+}
+
+class CustomHostingView<Content: View>: UIHostingController<Content> {
+    override func viewDidLoad() {
+        preferredContentSize = view.intrinsicContentSize
+    }
 }

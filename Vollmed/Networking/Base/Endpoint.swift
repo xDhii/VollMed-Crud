@@ -24,6 +24,4 @@ extension Endpoint {
     var host: String {
         return "localhost"
     }
-
-    
 }

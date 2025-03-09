@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    let service: WebService = WebService()
-    var viewModel: HomeViewModel = HomeViewModel(service: HomeNetworkingService(),
-                                                 authService: AuthenticationService())
+    let service: WebService = .init()
+    var viewModel: HomeViewModel = .init(service: HomeNetworkingService(),
+                                         authService: AuthenticationService())
     @State private var specialists: [Specialist] = []
     @State private var isShowingSnackBar: Bool = false
     @State private var isFetchingData: Bool = true

@@ -1,0 +1,16 @@
+PODS:
+  - VollmedUI (1.0.0)
+
+DEPENDENCIES:
+  - VollmedUI (= 1.0.0)
+
+SPEC REPOS:
+  "git@github.com:xDhii/VollmedUI.git":
+    - VollmedUI
+
+SPEC CHECKSUMS:
+  VollmedUI: d802a87f05431f435a053bc7c6ff58fea26cef84
+
+PODFILE CHECKSUM: 6599446539991044a5e02f1d5aea5394d50a4bf4
+
+COCOAPODS: 1.16.2

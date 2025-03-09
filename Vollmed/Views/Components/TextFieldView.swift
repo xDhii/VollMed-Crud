@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import VollmedUI
 
 enum TextFieldType {
     case name
@@ -22,24 +23,22 @@ struct TextFieldView: View {
     var fieldType: TextFieldType
     var keyboardType: UIKeyboardType {
         switch fieldType {
-            case .name:
-                .default
-            case .email:
-                .emailAddress
-            case .document:
-                .numberPad
-            case .phone:
-                .numberPad
-            case .password:
-                .default
+        case .name:
+            .default
+        case .email:
+            .emailAddress
+        case .document:
+            .numberPad
+        case .phone:
+            .numberPad
+        case .password:
+            .default
         }
     }
 
     var body: some View {
         Text(title)
-            .font(.title3)
-            .bold()
-            .foregroundStyle(.accent)
+            .titleStyleMdBold()
 
         if fieldType == .password {
             SecureField(placeholder, text: $value)

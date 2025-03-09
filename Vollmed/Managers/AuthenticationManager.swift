@@ -14,8 +14,8 @@ class AuthenticationManager: ObservableObject {
     @Published var patientID: String?
 
     private init() {
-        self.token = KeychainHelper.get(for: "app-vollmed-token")
-        self.patientID = UserDefaultsHelper.get(for: "app-vollmed-patient-id")
+        token = KeychainHelper.get(for: "app-vollmed-token")
+        patientID = UserDefaultsHelper.get(for: "app-vollmed-patient-id")
     }
 
     func saveToken(token: String) {

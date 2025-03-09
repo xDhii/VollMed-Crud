@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct KeychainHelper {
+enum KeychainHelper {
     static func save(value: String, key: String) {
         guard let data = value.data(using: .utf8) else { return }
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
-            kSecValueData as String: data
+            kSecValueData as String: data,
         ]
 
         SecItemDelete(query as CFDictionary)
@@ -26,7 +26,7 @@ struct KeychainHelper {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecReturnData as String: kCFBooleanTrue!,
-            kSecMatchLimit as String: kSecMatchLimitOne
+            kSecMatchLimit as String: kSecMatchLimitOne,
         ]
 
         var dataTypeRef: AnyObject?
@@ -43,7 +43,7 @@ struct KeychainHelper {
     static func remove(for key: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
+            kSecAttrAccount as String: key,
         ]
         SecItemDelete(query as CFDictionary)
     }

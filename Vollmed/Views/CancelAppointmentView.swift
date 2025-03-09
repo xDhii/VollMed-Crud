@@ -61,7 +61,8 @@ struct CancelAppointmentView: View {
         .navigationBarTitleDisplayMode(.large)
         .alert(isAppointmentCanceled ? "Sucesso!" : "Algo deu errado!",
                isPresented: $showAlert,
-               presenting: isAppointmentCanceled) { _ in
+               presenting: isAppointmentCanceled)
+        { _ in
             Button(action: {
                 if isAppointmentCanceled {
                     dismiss()

@@ -24,7 +24,7 @@ struct SignUpView: View {
     let healthPlansList: [String] = ["Unimed", "SulAmérica", "Bradesco", "Amil", "Golden Cross", "Medial", "Outro"]
 
     init() {
-        self.healthPlan = healthPlansList[0]
+        healthPlan = healthPlansList[0]
     }
 
     func register() async {
@@ -36,7 +36,7 @@ struct SignUpView: View {
                               phoneNumber: userPhoneNumber,
                               healthPlan: healthPlan)
         do {
-            if (try await service.registerPatient(patient: patient)) != nil {
+            if try (await service.registerPatient(patient: patient)) != nil {
                 print("Paciente cadastrado com sucesso.")
                 isPatientRegistered = true
             } else {
@@ -133,7 +133,8 @@ struct SignUpView: View {
         .padding()
         .alert(isPatientRegistered ? "Sucesso" : "Oops, algo deu errado!",
                isPresented: $showAlert,
-               presenting: $isPatientRegistered) { _ in
+               presenting: $isPatientRegistered)
+        { _ in
             Button(action: {
                 if isPatientRegistered {
                     dismiss()

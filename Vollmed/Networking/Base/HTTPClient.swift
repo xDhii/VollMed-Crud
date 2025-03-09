@@ -42,27 +42,26 @@ extension HTTPClient {
             }
 
             switch response.statusCode {
-                case 200 ... 299:
-                    guard let responseModel else {
-                        return .success(nil)
-                    }
+            case 200 ... 299:
+                guard let responseModel else {
+                    return .success(nil)
+                }
 
-                    guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
-                        return .failure(.decode)
-                    }
+                guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
+                    return .failure(.decode)
+                }
 
-                    return .success(decodedResponse)
+                return .success(decodedResponse)
 
-                case 400:
-                    let errorResponse = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
-                    return .failure(.custom(errorResponse ?? ["error": "Unkown Error"]))
+            case 400:
+                let errorResponse = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+                return .failure(.custom(errorResponse ?? ["error": "Unkown Error"]))
 
+            case 401:
+                return .failure(.unauthorized)
 
-                case 401:
-                    return .failure(.unauthorized)
-
-                default:
-                    return .failure(.unknown)
+            default:
+                return .failure(.unknown)
             }
 
         } catch {

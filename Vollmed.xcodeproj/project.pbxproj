@@ -16,6 +16,7 @@
 		48539DEF2AB0F47C005BD7C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48539DEE2AB0F47C005BD7C9 /* ContentView.swift */; };
 		48539DF12AB0F47D005BD7C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48539DF02AB0F47D005BD7C9 /* Assets.xcassets */; };
 		48539DF42AB0F47D005BD7C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48539DF32AB0F47D005BD7C9 /* Preview Assets.xcassets */; };
+		B840009FCFBE5D4546D96EDE /* Pods_Vollmed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A716E50BA915A6E64984A9E4 /* Pods_Vollmed.framework */; };
 		BC0A2A572BC88CD200F8B387 /* SnackBarErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0A2A562BC88CD200F8B387 /* SnackBarErrorView.swift */; };
 		BC0A2A5C2BC8A12100F8B387 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0A2A5B2BC8A12100F8B387 /* SkeletonView.swift */; };
 		BC0A2A5E2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0A2A5D2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift */; };
@@ -58,6 +59,8 @@
 		48539DEE2AB0F47C005BD7C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48539DF02AB0F47D005BD7C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48539DF32AB0F47D005BD7C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		551A99AB3D45AB94B1D3A609 /* Pods-Vollmed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vollmed.release.xcconfig"; path = "Target Support Files/Pods-Vollmed/Pods-Vollmed.release.xcconfig"; sourceTree = "<group>"; };
+		A716E50BA915A6E64984A9E4 /* Pods_Vollmed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vollmed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0A2A562BC88CD200F8B387 /* SnackBarErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarErrorView.swift; sourceTree = "<group>"; };
 		BC0A2A5B2BC8A12100F8B387 /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
 		BC0A2A5D2BC8A6FD00F8B387 /* RedactedAnimationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedactedAnimationModifier.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		BCD7ADB02BB8A8EE003B3032 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		BCD7ADB22BB9CD39003B3032 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		BCD7ADB42BB9D4D9003B3032 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		F9BBCAE3F62DE72ACA6F4021 /* Pods-Vollmed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vollmed.debug.xcconfig"; path = "Target Support Files/Pods-Vollmed/Pods-Vollmed.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,12 +99,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B840009FCFBE5D4546D96EDE /* Pods_Vollmed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35BFFE62AB167054B7C8EDAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A716E50BA915A6E64984A9E4 /* Pods_Vollmed.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		484BEEF82AB0F55F0033C07A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +169,8 @@
 				BC83E5DF2BB5EFD6009B9020 /* README.md */,
 				48539DEB2AB0F47C005BD7C9 /* Vollmed */,
 				48539DEA2AB0F47C005BD7C9 /* Products */,
+				6F49D532E362276638B4F4C4 /* Pods */,
+				35BFFE62AB167054B7C8EDAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,6 +206,15 @@
 				48539DF32AB0F47D005BD7C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6F49D532E362276638B4F4C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9BBCAE3F62DE72ACA6F4021 /* Pods-Vollmed.debug.xcconfig */,
+				551A99AB3D45AB94B1D3A609 /* Pods-Vollmed.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		BC0A2A552BC88CBC00F8B387 /* SnackBarView */ = {
@@ -282,9 +306,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48539DF72AB0F47D005BD7C9 /* Build configuration list for PBXNativeTarget "Vollmed" */;
 			buildPhases = (
+				AAB7A254093C659E8B23F72C /* [CP] Check Pods Manifest.lock */,
 				48539DE52AB0F47C005BD7C9 /* Sources */,
 				48539DE62AB0F47C005BD7C9 /* Frameworks */,
 				48539DE72AB0F47C005BD7C9 /* Resources */,
+				909F4BE30414F989550A144F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,6 +365,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		909F4BE30414F989550A144F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vollmed/Pods-Vollmed-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vollmed/Pods-Vollmed-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vollmed/Pods-Vollmed-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAB7A254093C659E8B23F72C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Vollmed-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48539DE52AB0F47C005BD7C9 /* Sources */ = {
@@ -424,7 +492,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -487,7 +555,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -508,6 +576,7 @@
 		};
 		48539DF82AB0F47D005BD7C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9BBCAE3F62DE72ACA6F4021 /* Pods-Vollmed.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -523,6 +592,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,6 +608,7 @@
 		};
 		48539DF92AB0F47D005BD7C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 551A99AB3D45AB94B1D3A609 /* Pods-Vollmed.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -553,6 +624,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

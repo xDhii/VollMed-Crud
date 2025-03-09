@@ -17,18 +17,18 @@ enum RequestError: Error {
 
     var customMessage: String {
         switch self {
-            case .decode:
-                return "Erro de decodificação"
-            case .unauthorized:
-                return "Sessão expirada"
-            case .custom(let errorData):
-                if let jsonError = errorData?["error"] as? [String: Any] {
-                    let message = jsonError["message"] as? String ?? ""
-                    return message
-                }
-                return "Erro desconhecido"
-            default:
-                return "Erro desconhecido"
+        case .decode:
+            return "Erro de decodificação"
+        case .unauthorized:
+            return "Sessão expirada"
+        case let .custom(errorData):
+            if let jsonError = errorData?["error"] as? [String: Any] {
+                let message = jsonError["message"] as? String ?? ""
+                return message
+            }
+            return "Erro desconhecido"
+        default:
+            return "Erro desconhecido"
         }
     }
 }
